@@ -1,13 +1,13 @@
 package mhewedy.fsm;
 
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 
 public class ProxyIterable<T> implements Iterable<T> {
 
-	private List<T> list;
+	private Collection<T> list;
 
-	ProxyIterable(List<T> list) {
+	ProxyIterable(Collection<T> list) {
 		if (list == null) {
 			throw new IllegalArgumentException("list is null");
 		}
@@ -18,7 +18,7 @@ public class ProxyIterable<T> implements Iterable<T> {
 	 * 
 	 * @return reference to the wrapped list
 	 */
-	public List<T> getList() {
+	public Collection<T> getList() {
 		return list;
 	}
 

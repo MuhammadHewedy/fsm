@@ -12,7 +12,7 @@ import org.junit.Test;
 public class MyTestCase {
 
 	List<Student> list = new ArrayList<>();
-	City city = new City("London");
+	City city = new City("Cairo");
 
 	@Before
 	public void setUp() throws Exception {
@@ -22,7 +22,7 @@ public class MyTestCase {
 	}
 
 	@Test
-	public void test1() {
+	public void testGetNull() {
 		MyState myState = 
 				from(MyState.STATE_A)
 				.in(MyState.STATE_B, MyState.STATE_C)
@@ -31,6 +31,35 @@ public class MyTestCase {
 		
 		assertNull(myState);
 	}
+
+	@Test
+	public void testOfProxyObjectCache() {
+
+		City cairo = new City("Cairo");
+		City london = new City("London");
+
+		assertEquals(of(cairo), of(cairo));
+		assertEquals(of(london), of(london));
+		assertNotEquals(of(cairo), of(london));
+	}
+	
+	@Test
+	public void testOfProxyListCache() {
+		
+		List<Student> stdList1 = new ArrayList<>();
+		stdList1.add(new Student(100));
+		stdList1.add(new Student(90));
+		
+		List<Student> stdList2 = new ArrayList<>();
+		stdList2.add(new Student(10));
+		stdList2.add(new Student(90));
+		
+		assertEquals(of(stdList1), of(stdList1));
+		assertEquals(of(stdList2), of(stdList2));
+		assertNotEquals(of(stdList1), of(stdList2));
+		
+	}
+	
 
 	// ------------- some data structure
 
