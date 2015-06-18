@@ -1,0 +1,16 @@
+target/
+.classpath
+.project
+.settings/
+.jazzignore
+*/.DS_Store
+*/.springBeans
+*/.metadata
+*/.idea/
+*/*.iml
+.jazz5
+rebel.xml
+.metadata/
+Servers
+logs/*
+
