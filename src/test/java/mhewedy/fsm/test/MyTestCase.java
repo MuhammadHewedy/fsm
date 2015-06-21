@@ -121,6 +121,7 @@ public class MyTestCase {
 		.get();
 		
 		assertEquals(out, Status.STATE_A);
+		
 	}
 	
 
