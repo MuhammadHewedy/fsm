@@ -23,9 +23,9 @@ public class MyTestCase {
 
 	@Test
 	public void testGetNull() {
-		MyState myState = MyState.STATE_A;
+		MyState currentStatus = MyState.STATE_A;
 		MyState outState = 
-				given(myState)
+				given(currentStatus)
 				.in(MyState.STATE_B, MyState.STATE_C)
 				.then(MyState.STATE_D)
 				.get();
@@ -61,11 +61,34 @@ public class MyTestCase {
 		
 	}
 	
-	public void testMe(){
-		MyState myState = MyState.STATE_A;
+	@Test
+	public void testNormalPath(){
+		
+		MyState currentStatus = MyState.STATE_A;
+		
+		MyState out =
+				given(currentStatus)
+				.in(MyState.STATE_A, MyState.STATE_B)
+				.when(of(list).any("grade", equal(100)))
+				.then(MyState.STATE_D)
+				.get();
 		
 		
-		
+		assertEquals(out, MyState.STATE_D);
+	}
+	
+	@Test
+	public void testNormalPath2() {
+
+		MyState currentStatus = MyState.STATE_A;
+
+		MyState out =
+			given(currentStatus)
+			.in(MyState.STATE_A, MyState.STATE_B)
+			.when(of(list).filter("grade", less(100)).size() == 2)
+			.then(MyState.STATE_D).get();
+
+		assertEquals(out, MyState.STATE_D);
 	}
 	
 

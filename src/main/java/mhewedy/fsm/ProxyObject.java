@@ -5,6 +5,10 @@ import java.lang.reflect.Field;
 public class ProxyObject<F> {
 	F o;
 
+	/**
+	 * Never use this constructor directly, use {@code Manager#of(Object)} instead.
+	 * @param o
+	 */
 	ProxyObject(F o) {
 		this.o = o;
 	}
