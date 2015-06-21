@@ -73,7 +73,6 @@ public class MyTestCase {
 				.then(Status.STATE_D)
 				.get();
 		
-		
 		assertEquals(out, Status.STATE_D);
 	}
 	
@@ -82,7 +81,8 @@ public class MyTestCase {
 
 		Status currentStatus = Status.STATE_A;
 
-		Status out = given(currentStatus)
+		Status out = 
+				given(currentStatus)
 				.in(Status.STATE_A, Status.STATE_B)
 				.when(of(list).filter("grade", less(100)).size() == 2)
 				.then(Status.STATE_D)
@@ -95,13 +95,14 @@ public class MyTestCase {
 	public void testWhenOfListOrCondition(){
 		Status currentStatus = Status.STATE_A;
 		
-		Status out = given(currentStatus)
-		.in(Status.STATE_A, Status.STATE_B)
-		.when(of(city).get("location").equals("Cairo"))
-		.and(or(of(list).any("grade", equal(100)))
-				.or(city.location.equals("Riyadh")))
-		.then(Status.STATE_D)
-		.get();
+		Status out = 
+				given(currentStatus)
+				.in(Status.STATE_A, Status.STATE_B)
+				.when(of(city).get("location").equals("Cairo"))
+				.and(or(of(list).any("grade", equal(100)))
+						.or(city.location.equals("Riyadh")))
+				.then(Status.STATE_D)
+				.get();
 		
 		assertEquals(out, Status.STATE_D);
 	}
@@ -111,14 +112,15 @@ public class MyTestCase {
 		
 		Status currentStatus = Status.STATE_A;
 		
-		Status out = given(currentStatus)
-		.in(Status.STATE_A, Status.STATE_B)
-		.when(of(city).get("location").equals("Alex"))
-		.and(or(of(list).any("grade", equal(100)))
-				.or(city.location.equals("Riyadh")))
-		.then(Status.STATE_D)
-		.otherwise(Status.STATE_A)
-		.get();
+		Status out = 
+				given(currentStatus)
+				.in(Status.STATE_A, Status.STATE_B)
+				.when(of(city).get("location").equals("Alex"))
+				.and(or(of(list).any("grade", equal(100)))
+						.or(city.location.equals("Riyadh")))
+				.then(Status.STATE_D)
+				.otherwise(Status.STATE_A)
+				.get();
 		
 		assertEquals(out, Status.STATE_A);
 		
