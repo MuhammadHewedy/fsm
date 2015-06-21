@@ -22,18 +22,6 @@ public class MyTestCase {
 	}
 
 	@Test
-	public void testGetNull() {
-		MyState currentStatus = MyState.STATE_A;
-		MyState outState = 
-				given(currentStatus)
-				.in(MyState.STATE_B, MyState.STATE_C)
-				.then(MyState.STATE_D)
-				.get();
-		
-		assertNull(outState);
-	}
-
-	@Test
 	public void testOfProxyObjectCache() {
 
 		City cairo = new City("Cairo");
@@ -62,39 +50,83 @@ public class MyTestCase {
 	}
 	
 	@Test
-	public void testNormalPath(){
-		
-		MyState currentStatus = MyState.STATE_A;
-		
-		MyState out =
+	public void testGetNull() {
+		Status currentStatus = Status.STATE_A;
+		Status outState = 
 				given(currentStatus)
-				.in(MyState.STATE_A, MyState.STATE_B)
-				.when(of(list).any("grade", equal(100)))
-				.then(MyState.STATE_D)
+				.in(Status.STATE_B, Status.STATE_C)
+				.then(Status.STATE_D)
 				.get();
 		
-		
-		assertEquals(out, MyState.STATE_D);
+		assertNull(outState);
 	}
 	
 	@Test
-	public void testNormalPath2() {
+	public void testWhenOfListAny(){
+		
+		Status currentStatus = Status.STATE_A;
+		
+		Status out =
+				given(currentStatus)
+				.in(Status.STATE_A, Status.STATE_B)
+				.when(of(list).any("grade", equal(100)))
+				.then(Status.STATE_D)
+				.get();
+		
+		
+		assertEquals(out, Status.STATE_D);
+	}
+	
+	@Test
+	public void testWhenOfListFilterSize() {
 
-		MyState currentStatus = MyState.STATE_A;
+		Status currentStatus = Status.STATE_A;
 
-		MyState out =
-			given(currentStatus)
-			.in(MyState.STATE_A, MyState.STATE_B)
-			.when(of(list).filter("grade", less(100)).size() == 2)
-			.then(MyState.STATE_D).get();
+		Status out = given(currentStatus)
+				.in(Status.STATE_A, Status.STATE_B)
+				.when(of(list).filter("grade", less(100)).size() == 2)
+				.then(Status.STATE_D)
+				.get();
 
-		assertEquals(out, MyState.STATE_D);
+		assertEquals(out, Status.STATE_D);
+	}
+	
+	@Test
+	public void testWhenOfListOrCondition(){
+		Status currentStatus = Status.STATE_A;
+		
+		Status out = given(currentStatus)
+		.in(Status.STATE_A, Status.STATE_B)
+		.when(of(city).get("location").equals("Cairo"))
+		.and(or(of(list).any("grade", equal(100)))
+				.or(city.location.equals("Riyadh")))
+		.then(Status.STATE_D)
+		.get();
+		
+		assertEquals(out, Status.STATE_D);
+	}
+	
+	@Test
+	public void testOtherwise(){
+		
+		Status currentStatus = Status.STATE_A;
+		
+		Status out = given(currentStatus)
+		.in(Status.STATE_A, Status.STATE_B)
+		.when(of(city).get("location").equals("Alex"))
+		.and(or(of(list).any("grade", equal(100)))
+				.or(city.location.equals("Riyadh")))
+		.then(Status.STATE_D)
+		.otherwise(Status.STATE_A)
+		.get();
+		
+		assertEquals(out, Status.STATE_A);
 	}
 	
 
 	// ------------- some data structure
 
-	enum MyState {
+	enum Status {
 		STATE_A, STATE_B, STATE_C, STATE_D
 	}
 
