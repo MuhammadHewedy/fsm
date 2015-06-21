@@ -61,6 +61,13 @@ public class MyTestCase {
 		
 	}
 	
+	public void testMe(){
+		MyState myState = MyState.STATE_A;
+		
+		
+		
+	}
+	
 
 	// ------------- some data structure
 

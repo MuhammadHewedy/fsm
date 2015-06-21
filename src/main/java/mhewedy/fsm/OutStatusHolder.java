@@ -1,11 +1,9 @@
-package mhewedy.fsm.holders;
+package mhewedy.fsm;
 
 import java.util.Arrays;
 import java.util.List;
 
-import mhewedy.fsm.OrCondition;
-
-public class OutStatusHolder<T> {
+public class OutStatusHolder<T> implements Holder{
 
 	ConditionHolder<T> conditionHolder;
 	private T otherwise;

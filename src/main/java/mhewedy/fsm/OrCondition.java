@@ -12,7 +12,7 @@ public class OrCondition {
 		return this;
 	}
 
-	public boolean evaluate() {
+	boolean evaluate() {
 		for (Boolean bool : boolList) {
 			if (bool) {
 				return true;

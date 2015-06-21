@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mhewedy.fsm.holders.InStatusHolder;
-
 @SuppressWarnings("unchecked")
 public class Manager {
 
@@ -40,7 +38,7 @@ public class Manager {
 
 	public static <E extends Enum<?>> InStatusHolder<E> given(E currentStatus) {
 		InStatusHolder<E> holder = new InStatusHolder<>();
-		holder.setInput(currentStatus);
+		holder.input = currentStatus;
 		return holder;
 	}
 

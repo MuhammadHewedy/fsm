@@ -1,13 +1,10 @@
-package mhewedy.fsm.holders;
+package mhewedy.fsm;
 
-public class InStatusHolder<T> {
+
+public class InStatusHolder<T> implements Holder{
 
 	T input;
 	T[] match;
-
-	public void setInput(T input) {
-		this.input = input;
-	}
 
 	public ConditionHolder<T> in(
 			@SuppressWarnings("unchecked") T... matchStatus) {

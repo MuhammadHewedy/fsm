@@ -1,11 +1,9 @@
-package mhewedy.fsm.holders;
+package mhewedy.fsm;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import mhewedy.fsm.OrCondition;
-
-public class ConditionHolder<T> {
+public class ConditionHolder<T> implements Holder{
 
 	InStatusHolder<T> inStatusHolder;
 	T then;
