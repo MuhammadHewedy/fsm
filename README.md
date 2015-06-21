@@ -14,4 +14,4 @@ Usage example
     	  .then(Status.STATE_D)
     	  .get();
     		
-For more usage see test cases.  
+For more usage see test cases. https://github.com/MuhammadHewedy/fsm/blob/master/src/test/java/mhewedy/fsm/test/MyTestCase.java
