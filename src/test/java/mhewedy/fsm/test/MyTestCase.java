@@ -23,13 +23,14 @@ public class MyTestCase {
 
 	@Test
 	public void testGetNull() {
-		MyState myState = 
-				from(MyState.STATE_A)
+		MyState myState = MyState.STATE_A;
+		MyState outState = 
+				given(myState)
 				.in(MyState.STATE_B, MyState.STATE_C)
 				.then(MyState.STATE_D)
 				.get();
 		
-		assertNull(myState);
+		assertNull(outState);
 	}
 
 	@Test

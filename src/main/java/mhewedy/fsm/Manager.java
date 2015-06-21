@@ -38,7 +38,7 @@ public class Manager {
 		return new Predicate.LessPredicate<T>(t);
 	}
 
-	public static <E extends Enum<?>> InStatusHolder<E> from(E currentStatus) {
+	public static <E extends Enum<?>> InStatusHolder<E> given(E currentStatus) {
 		InStatusHolder<E> holder = new InStatusHolder<>();
 		holder.setInput(currentStatus);
 		return holder;
